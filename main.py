@@ -5,6 +5,10 @@ from food import Food
 from score_board import ScoreBoard
 
 BOUNDARY = 300
+DELAY_DIVISOR = 10
+DELAY_MULTIPLIER = 0.02
+MAX_DELAY = 0.1
+
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -19,7 +23,7 @@ score_board = ScoreBoard()
 def start_game():
     game_on = True
     while game_on:
-        sleep(0.1)
+        sleep(MAX_DELAY - (int(score_board.score / DELAY_DIVISOR)) * DELAY_MULTIPLIER)
         screen.update()
         snake.move()
         
