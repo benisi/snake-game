@@ -35,8 +35,8 @@ def start_game():
             game_on = False
             score_board.game_over()
             
-        for segment in snake.segments:
-            if segment != snake.head and snake.head.distance(segment) < 5:
+        for segment in snake.segments[1:]:
+            if snake.head.distance(segment) < 5:
                 game_on = False
                 score_board.game_over()
 
