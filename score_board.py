@@ -15,16 +15,18 @@ class ScoreBoard(Turtle):
         self.goto(0, 280)
         self.update()
         self.hideturtle()
+        self.game_on = True
         
     def update(self):
          self.clear()
          self.write(f'Score {self.score}', move=False, align=ALIGN, font=FONT) 
          
     def game_over(self):
+        self.game_on = False
         self.goto(0, 0)
         self.write('Game Over', move=False, align=ALIGN, font=FONT) 
         self.goto(0, -20)
-        self.write('Press ENTER to play again', move=False, align=ALIGN, font=FONT) 
+        self.write('Press ENTER to play again', move=False, align=ALIGN, font=FONT)
     
     def reset(self):
         self.setup()

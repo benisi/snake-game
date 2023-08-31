@@ -21,8 +21,7 @@ snake = Snake()
 score_board = ScoreBoard()
 
 def start_game():
-    game_on = True
-    while game_on:
+    while score_board.game_on:
         sleep(MAX_DELAY - (int(score_board.score / DELAY_DIVISOR)) * DELAY_MULTIPLIER)
         screen.update()
         snake.move()
@@ -36,18 +35,17 @@ def start_game():
         x_cor = snake.head.xcor()
         
         if y_cor > BOUNDARY or y_cor < -BOUNDARY or x_cor > BOUNDARY or x_cor < -BOUNDARY:
-            game_on = False
             score_board.game_over()
             
         for segment in snake.segments[1:]:
             if snake.head.distance(segment) < 5:
-                game_on = False
                 score_board.game_over()
 
 def restart():
-    score_board.reset()
-    snake.refresh()
-    start_game()
+    if not score_board.game_on:
+        score_board.reset()
+        snake.refresh()
+        start_game()
 
 screen.listen()
 screen.onkey(snake.up, 'Up')
